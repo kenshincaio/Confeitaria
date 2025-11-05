@@ -13,3 +13,11 @@ header h1 {
   font-size: 50px;
 }
 
+nav ul{
+  list-style: none;
+  text-align: center;
+}
+nav ul li{
+  display: inline;
+  margin: 0 15px;
+}
