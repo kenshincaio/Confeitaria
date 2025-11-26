@@ -3,7 +3,7 @@ alert('oi foi carregado')
 
 function criarItemCardapio(titulo, descricao, foto){
   const divItemCardapio = document.createElement('div') 
-  divItemCardapio.className = 'item cardapio'
+  divItemCardapio.className = 'item-cardapio'
   // colocar a classe
   
   const h3Titulo = document.createElement('h3')
@@ -11,8 +11,10 @@ function criarItemCardapio(titulo, descricao, foto){
 
   const pDescricao = document.createElement('p')
   pDescricao.textContent = descricao
+  pDescricao.className = 'descricao'
   // adicionar a classe
 
   const img = document.createElement('img')
   img.src =  foto
+  img.className = 'img-item'
 }
