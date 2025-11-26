@@ -1,4 +1,3 @@
-alert('oi foi carregado')
 // Vamos criar os elementos do HTML com JavaScript dinamicamente
 
 function criarItemCardapio(titulo, descricao, foto){
