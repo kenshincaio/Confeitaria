@@ -1,32 +1,48 @@
-// Vamos criar os elementos do HTML com JavaScript dinamicamente
+document.addEventListener("DOMContentLoaded", () => {
+  // Referência para a div onde o cardápio será inserido
+  const cardapioDiv = document.getElementById('cardapio');
 
-function criarItemCardapio(titulo, descricao, foto){
-  const divItemCardapio = document.createElement('div') 
-  divItemCardapio.className = 'item-cardapio'
-  // colocar a classe
-  
-  const h3Titulo = document.createElement('h3')
-  h3Titulo.textContent = titulo
+  // Função para criar o item do cardápio
+  function criarItemCardapio(titulo, descricao, foto) {
+    const divItemCardapio = document.createElement('div');
+    divItemCardapio.className = 'item-cardapio'; // Adicionando a classe
 
-  const pDescricao = document.createElement('p')
-  pDescricao.textContent = descricao
-  pDescricao.className = 'descricao'
-  // adicionar a classe
+    const h3Titulo = document.createElement('h3');
+    h3Titulo.textContent = titulo;
 
-  const img = document.createElement('img')
-  img.src =  foto
-  img.className = 'img-item'
+    const pDescricao = document.createElement('p');
+    pDescricao.textContent = descricao;
+    pDescricao.className = 'descricao'; // Adicionando a classe
 
-  // Adicionando os elementos na div Mãe
-  const divC = document.getElementById
+    const img = document.createElement('img');
+    img.src = foto;
+    img.className = 'img-item'; // Adicionando a classe
 
-  divItemCardapio.appendChild(h3Titulo)
-  divItemCardapio.appendChild(pDescricao)
-  divItemCardapio.appendChild(img)
+    // Adicionando os elementos na div mãe
+    divItemCardapio.appendChild(h3Titulo);
+    divItemCardapio.appendChild(pDescricao);
+    divItemCardapio.appendChild(img);
 
-  divC.appendChild(divItemCardapio)
-}
+    // Inserindo o item no cardápio
+    cardapioDiv.appendChild(divItemCardapio);
+  }
 
-// executando a function
-
-criarItemCardapio('Bolo de Chocolate', 'Um clássico irresistível com camadas de chocolate', 'https://www.comidaereceitas.com.br/img/sizeswp/1200x675/2020/05/bolo_chocolate_leite.jpg')
+  // Requisição para obter o cardápio da API
+  fetch('https://confeitaria-api-uqku.onrender.com/cardapio')
+    .then(response => {
+      if (!response.ok) {
+        throw new Error('Erro na requisição');
+      }
+      return response.json();
+    })
+    .then(data => {
+      // Iterando sobre os dados e criando os itens dinamicamente
+      data.forEach(item => {
+        criarItemCardapio(item.nome, item.descricao, item.foto);
+      });
+    })
+    .catch(error => {
+      cardapioDiv.innerHTML = '<p>Erro ao carregar o cardápio. Tente novamente mais tarde.</p>';
+      console.error('Erro ao carregar o cardápio:', error);
+    });
+});
