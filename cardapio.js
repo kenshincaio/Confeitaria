@@ -24,7 +24,6 @@ function criarItemCardapio(titulo, descricao, foto) {
 }
 
 
-// 🔥 NOVO: Buscar o cardápio na API
 fetch("https://confeitaria-api-uqku.onrender.com/cardapio")
     .then(response => response.json())
     .then(dados => {
