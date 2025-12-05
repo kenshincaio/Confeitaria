@@ -1,4 +1,4 @@
-// Função que cria o item no HTML (mantém a sua)
+
 function criarItemCardapio(titulo, descricao, foto) {
     const divItemCardapio = document.createElement('div')
     divItemCardapio.className = 'item-cardapio'
